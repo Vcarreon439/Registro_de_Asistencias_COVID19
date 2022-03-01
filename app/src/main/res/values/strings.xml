@@ -11,20 +11,6 @@
     <string name="menu_asistencias">Tomar Asistencias</string>
     <string name="menu_verificar">Verficar Asistencias</string>
 
-    <!--ComboBox Carrera-->
-    <string-array name="Carreras">
-        <item>Sistemas Automotrices</item>
-        <item>Gestión Empresarial</item>
-        <item>Ambiental</item>
-        <item>Informática</item>
-        <item>Electromecánica</item>
-        <item>Electrónica</item>
-        <item>Industrial</item>
-        <item>Sistemas Computacionales</item>
-        <item>Especializacion Mecatrónica</item>
-        <item>Maestria Mecatrónica</item>
-    </string-array>
-
     <!--ComboBox Semestre-->
     <string-array name="Semestres">
         <item>Primer Semestre</item>
