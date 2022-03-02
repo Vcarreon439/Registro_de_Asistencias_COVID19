@@ -9,23 +9,25 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.room.util.DBUtil
 import com.example.registrodeasistenciascovid_19.*
 import com.example.registrodeasistenciascovid_19.ViewModels.CarreraViewModel
+import com.example.registrodeasistenciascovid_19.ViewModels.MateriaViewModel
 import com.example.registrodeasistenciascovid_19.databinding.FragmentHomeBinding
 import com.example.registrodeasistenciascovid_19.entities.Carrera
-import com.example.registrodeasistenciascovid_19.list.ListAdapter
+import com.example.registrodeasistenciascovid_19.entities.Materia
 
 class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
 
+    //ViewModels
     private lateinit var mCarreraViewModel: CarreraViewModel
+    private lateinit var mMateriaViewModel: MateriaViewModel
 
-    var indiceCarrera: Int? = null
-
-    lateinit var semestres: Array<String>
+    //localData
+    private lateinit var localCarrera: Carrera
+    private lateinit var localMaterias: List<Materia>
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -46,41 +48,34 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
             textView.text = it
         })
 
-        mCarreraViewModel = ViewModelProvider(this).get(CarreraViewModel::class.java)
+        mCarreraViewModel = ViewModelProvider(this)[CarreraViewModel::class.java]
+        mMateriaViewModel = ViewModelProvider(this).get(MateriaViewModel::class.java)
+
         if (IsEmpty(mCarreraViewModel)){
-            Toast.makeText(context, "aaaa", Toast.LENGTH_LONG).show()
+            //Toast.makeText(context, "aaaa", Toast.LENGTH_LONG).show()
         }
+        else
+            CargarCarreras()
 
-        val adapter = ListAdapter()
-
-
-        //mCarreraViewModel.AgregarCarrera(Carrera("a","Ing"))
-
-        mCarreraViewModel.leerTodo.observe(viewLifecycleOwner, Observer { carrera ->
-            adapter.setData(carrera)
-
-            var arr = mutableListOf<String>()
-            for (carreras in carrera){
-                arr.add(carreras.nombreCarrera)
-            }
-
-            val adapter2 = context?.let { ArrayAdapter(it, R.layout.list_item, arr) }
-            with(binding.cboCarreras){
-                setAdapter(adapter2)
-                onItemClickListener = this@HomeFragment
-            }
-
-        })
+        //val adapterMateria = MateriaListAdapter()
 
         return root
+    }
+
+
+
+    private fun GetCarrera(position: Int): Carrera?{
+        var temp: Carrera? = null
+        mCarreraViewModel.leerTodo.observe(viewLifecycleOwner, Observer { carrera -> temp = carrera[position] })
+        return temp
     }
 
     private fun IsEmpty(viewModel: CarreraViewModel): Boolean {
 
         var flag: Boolean = false
-        viewModel.leerTodo.observe(viewLifecycleOwner, { carrera->
+        viewModel.leerTodo.observe(viewLifecycleOwner) { carrera ->
             flag = carrera.isNotEmpty()
-        })
+        }
 
         return flag
     }
@@ -90,43 +85,61 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         _binding = null
     }
 
-    private fun CargarSemestresGeneral(){
-        //Dropdown de semestres
-        semestres = resources.getStringArray(R.array.Semestres)
-        val adapter = context?.let { ArrayAdapter(it, R.layout.list_item, semestres) }
-        with(binding.cboSemestres){
-            setAdapter(adapter)
-        }
-    }
+    //region CargarDatos
+    private fun CargarCarreras(){
+        mCarreraViewModel.leerTodo.observe(viewLifecycleOwner, Observer { carrera ->
 
-    private fun CargarSemestresEspecialidad(){
-        //Dropdown de semestres
-        semestres = resources.getStringArray(R.array.SemestresEspecialidad)
-        val adapter = context?.let { ArrayAdapter(it, R.layout.list_item, semestres) }
-        with(binding.cboSemestres){
-            setAdapter(adapter)
-        }
-    }
+            var arr = mutableListOf<String>()
+            for (carreras in carrera){
+                arr.add(carreras.nombreCarrera)
+            }
 
-    private fun CargarSemestresMaestrias(){
-        //Dropdown de semestres
-        semestres = resources.getStringArray(R.array.SemestresMaestria)
-        val adapter = context?.let { ArrayAdapter(it, R.layout.list_item, semestres) }
-        with(binding.cboSemestres){
-            setAdapter(adapter)
-        }
+            val adapter = context?.let { ArrayAdapter(it, R.layout.list_item, arr) }
+            with(binding.cboCarreras){
+                setAdapter(adapter)
+                onItemClickListener = this@HomeFragment
+            }
+        })
     }
-
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        indiceCarrera = position
+    private fun CargarSemestres(position: Int){
+        var semestres: Array<String> = emptyArray()
 
         if (position<=7)
-            CargarSemestresGeneral()
+            semestres = resources.getStringArray(R.array.Semestres)
 
         if (position==9)
-            CargarSemestresEspecialidad()
+            semestres = resources.getStringArray(R.array.SemestresEspecialidad)
 
         if (position==10)
-            CargarSemestresMaestrias()
+            semestres = resources.getStringArray(R.array.SemestresMaestria)
+
+        //Dropdown de semestres
+        val adapter = context?.let { ArrayAdapter(it, R.layout.list_item, semestres) }
+        with(binding.cboSemestres){
+            setAdapter(adapter)
+        }
+        
+        binding.cboSemestres.setOnItemClickListener { adapterView, view, position, l ->
+            CargarMaterias(localCarrera, position+1)
+        }
+        
+    }
+    private fun CargarMaterias(carrera: Carrera, numSemestre: Int){
+        mMateriaViewModel.materiasSemestre(carrera.idCarrera, numSemestre).observe(viewLifecycleOwner, Observer { materias ->
+            localMaterias = materias
+            var arr = mutableListOf<String>()
+
+            for (materia in materias )
+                arr.add(materia.nombreMateria)
+
+            val adapter = context?.let { ArrayAdapter(it, R.layout.list_item, arr) }
+            binding.cboMaterias.setAdapter(adapter)
+        })
+    }
+    //endregion
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        localCarrera = GetCarrera(position)!!
+        CargarSemestres(position)
     }
 }

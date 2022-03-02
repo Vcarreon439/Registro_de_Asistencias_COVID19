@@ -3,16 +3,15 @@ package com.example.registrodeasistenciascovid_19.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.registrodeasistenciascovid_19.R
 import com.example.registrodeasistenciascovid_19.entities.Carrera
+import com.example.registrodeasistenciascovid_19.entities.Materia
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
+class MateriaListAdapter: RecyclerView.Adapter<MateriaListAdapter.MyViewHolder>() {
 
-    private var listaCarrera = emptyList<Carrera>()
-
+    private var listaMaterias = emptyList<Materia>()
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -20,21 +19,16 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return  listaCarrera.size
+        return listaMaterias.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val current = listaCarrera[position]
-        holder.itemView.elementoCbo.text = current.nombreCarrera
+        val current = listaMaterias[position]
+        holder.itemView.elementoCbo.text = current.nombreMateria
     }
 
-    fun setData(carreras: List<Carrera>){
-        this.listaCarrera = carreras
+    fun setData(materias: List<Materia>){
+        this.listaMaterias = materias
         notifyDataSetChanged()
     }
-
-    fun getList(): List<Carrera>{
-        return this.listaCarrera
-    }
-
 }
