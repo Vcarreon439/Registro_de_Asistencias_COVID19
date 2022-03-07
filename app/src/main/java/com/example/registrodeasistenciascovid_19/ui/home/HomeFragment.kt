@@ -15,6 +15,7 @@ import com.example.registrodeasistenciascovid_19.ViewModels.MateriaViewModel
 import com.example.registrodeasistenciascovid_19.databinding.FragmentHomeBinding
 import com.example.registrodeasistenciascovid_19.entities.Carrera
 import com.example.registrodeasistenciascovid_19.entities.Materia
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
 
@@ -43,26 +44,25 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+        /*val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
-        })
+        })*/
 
         mCarreraViewModel = ViewModelProvider(this)[CarreraViewModel::class.java]
         mMateriaViewModel = ViewModelProvider(this).get(MateriaViewModel::class.java)
 
-        if (IsEmpty(mCarreraViewModel)){
-            //Toast.makeText(context, "aaaa", Toast.LENGTH_LONG).show()
-        }
+        if (IsEmpty(mCarreraViewModel))
+            Toast.makeText(context, "aaaa", Toast.LENGTH_LONG).show()
         else
             CargarCarreras()
 
-        //val adapterMateria = MateriaListAdapter()
+        binding.txtCodAula.setEndIconOnClickListener {
+            Toast.makeText(context, "aaaa", Toast.LENGTH_LONG).show()
+        }
 
         return root
     }
-
-
 
     private fun GetCarrera(position: Int): Carrera?{
         var temp: Carrera? = null
@@ -88,19 +88,14 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
     //region CargarDatos
     private fun CargarCarreras(){
         mCarreraViewModel.leerTodo.observe(viewLifecycleOwner, Observer { carrera ->
-
-            var arr = mutableListOf<String>()
-            for (carreras in carrera){
-                arr.add(carreras.nombreCarrera)
-            }
-
-            val adapter = context?.let { ArrayAdapter(it, R.layout.list_item, arr) }
+            homeViewModel.listaCarreras = carrera
             with(binding.cboCarreras){
-                setAdapter(adapter)
+                setAdapter(homeViewModel.adapterCarreras(context))
                 onItemClickListener = this@HomeFragment
             }
         })
     }
+
     private fun CargarSemestres(position: Int){
         var semestres: Array<String> = emptyArray()
 
@@ -124,6 +119,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         }
         
     }
+
     private fun CargarMaterias(carrera: Carrera, numSemestre: Int){
         mMateriaViewModel.materiasSemestre(carrera.idCarrera, numSemestre).observe(viewLifecycleOwner, Observer { materias ->
             localMaterias = materias

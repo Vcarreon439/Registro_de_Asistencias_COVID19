@@ -6,81 +6,108 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/btnCrearClase"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="137dp"
-        android:layout_marginEnd="138dp"
-        android:layout_marginBottom="288dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="130dp"
         android:text="Crear Clase"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/txtMateria"
+        app:layout_constraintStart_toStartOf="@+id/txtMateria"
+        app:layout_constraintTop_toBottomOf="@+id/txtMateria" />
 
-    <EditText
-        android:id="@+id/txtCodMaestro"
-        android:layout_width="353dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="42dp"
-        android:ems="10"
-        android:hint="Ingrese su codigo de maestro"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/txtCodAula"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="357dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:endIconCheckable="true"
+        app:endIconDrawable="@drawable/qr_code_scanner_24"
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toEndOf="@+id/txtCodMaestro"
+        app:layout_constraintStart_toStartOf="@+id/txtCodMaestro"
+        app:layout_constraintTop_toBottomOf="@+id/txtCodMaestro">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Codigo de Aula"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtCodMaestro"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="357dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="79dp"
+        app:endIconCheckable="true"
+        app:endIconDrawable="@drawable/qr_code_scanner_24"
+        app:endIconMode="custom"
+        app:layout_constraintBottom_toTopOf="@+id/txtCodAula"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Codigo de Maestro"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtCarrera"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="354dp"
         android:layout_height="58dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCodMaestro">
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="@+id/txtCodAula"
+        app:layout_constraintStart_toStartOf="@+id/txtCodAula"
+        app:layout_constraintTop_toBottomOf="@+id/txtCodAula">
 
         <AutoCompleteTextView
             android:id="@+id/cboCarreras"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:hint="Carrera"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
+        android:id="@+id/txtSemestre"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="354dp"
         android:layout_height="58dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="42dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+        app:layout_constraintEnd_toEndOf="@+id/txtCarrera"
+        app:layout_constraintStart_toStartOf="@+id/txtCarrera"
+        app:layout_constraintTop_toBottomOf="@+id/txtCarrera">
+
+        <AutoCompleteTextView
+            android:id="@+id/cboSemestres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Semestre"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtMateria"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="354dp"
+        android:layout_height="58dp"
+        app:layout_constraintEnd_toEndOf="@+id/txtSemestre"
+        app:layout_constraintStart_toStartOf="@+id/txtSemestre"
+        app:layout_constraintTop_toBottomOf="@+id/txtSemestre">
 
         <AutoCompleteTextView
             android:id="@+id/cboMaterias"
@@ -90,27 +117,11 @@
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-        android:layout_width="354dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
-
-        <AutoCompleteTextView
-            android:id="@+id/cboSemestres"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Semestre"
-            android:inputType="none" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="txtMateria,txtCarrera,btnCrearClase,txtSemestre,txtCodMaestro,txtCodAula" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
