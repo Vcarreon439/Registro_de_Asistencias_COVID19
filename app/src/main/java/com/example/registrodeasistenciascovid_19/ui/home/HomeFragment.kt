@@ -44,10 +44,14 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        /*val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })*/
+
+        _binding!!.btnQR1.setOnClickListener {
+            Toast.makeText(context, getString(R.string.nodisp), Toast.LENGTH_SHORT).show()
+        }
+
+        _binding!!.btnQR2.setOnClickListener {
+            Toast.makeText(context, getString(R.string.nodisp), Toast.LENGTH_SHORT).show()
+        }
 
         mCarreraViewModel = ViewModelProvider(this)[CarreraViewModel::class.java]
         mMateriaViewModel = ViewModelProvider(this).get(MateriaViewModel::class.java)
@@ -56,10 +60,6 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
             Toast.makeText(context, "aaaa", Toast.LENGTH_LONG).show()
         else
             CargarCarreras()
-
-        binding.txtCodAula.setEndIconOnClickListener {
-            Toast.makeText(context, "aaaa", Toast.LENGTH_LONG).show()
-        }
 
         return root
     }

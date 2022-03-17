@@ -6,10 +6,21 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Crear Clase</string>
+
     <string name="menu_asistencias">Tomar Asistencias</string>
     <string name="menu_verificar">Verficar Asistencias</string>
+
+    <string name="nodisp">Esta opción aun no esta disponible</string>
+
+    <string name="hintCodMaestro">Codigo de Maestro</string>
+    <string name="hintCodAula">Codigo de Aula</string>
+    <string name="hintCarrera">Carrera</string>
+    <string name="hintSemestre">Semestre</string>
+    <string name="hintMateria">Materia</string>
+
+    <string name="descBtnCodDoc">Aqui se ingresa el codigo perteneciente al docente</string>
+    <string name="descBtnCodAul">Aqui se ingresa el codigo perteneciente al aula</string>
 
     <!--ComboBox Semestre-->
     <string-array name="Semestres">
