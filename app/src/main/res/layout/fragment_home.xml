@@ -6,60 +6,78 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <Button
-        android:id="@+id/btnCrearClase"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="130dp"
-        android:text="Crear Clase"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txtMateria"
-        app:layout_constraintStart_toStartOf="@+id/txtMateria"
-        app:layout_constraintTop_toBottomOf="@+id/txtMateria" />
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtCodAula"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="357dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        app:endIconCheckable="true"
-        app:endIconDrawable="@drawable/qr_code_scanner_24"
-        app:endIconMode="custom"
-        app:layout_constraintEnd_toEndOf="@+id/txtCodMaestro"
-        app:layout_constraintStart_toStartOf="@+id/txtCodMaestro"
-        app:layout_constraintTop_toBottomOf="@+id/txtCodMaestro">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Codigo de Aula"
-            android:inputType="text" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtCodMaestro"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="357dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="79dp"
+        android:layout_width="298dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="16dp"
         app:endIconCheckable="true"
-        app:endIconDrawable="@drawable/qr_code_scanner_24"
-        app:endIconMode="custom"
+        app:endIconMode="clear_text"
         app:layout_constraintBottom_toTopOf="@+id/txtCodAula"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Codigo de Maestro"
+            android:layout_height="50dp"
+            android:hint="@string/hintCodMaestro"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnQR1"
+        android:layout_width="48dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="28dp"
+        android:contentDescription="@string/descBtnCodDoc"
+        android:layout_marginBottom="23dp"
+        android:drawableTop="@drawable/qr_code_scanner_24"
+        android:drawableTint="@color/design_default_color_background"
+        android:paddingTop="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnQR2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txtCodMaestro"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnQR2"
+        android:layout_width="48dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/descBtnCodAul"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        android:drawableTop="@drawable/qr_code_scanner_24"
+        android:drawableTint="@color/design_default_color_background"
+        android:paddingTop="11dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txtCodAula"
+        app:layout_constraintTop_toBottomOf="@+id/btnQR1" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtCodAula"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="298dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="16dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCodMaestro">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/hintCodAula"
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -69,17 +87,39 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="354dp"
         android:layout_height="58dp"
-        android:layout_marginTop="2dp"
-        app:layout_constraintEnd_toEndOf="@+id/txtCodAula"
-        app:layout_constraintStart_toStartOf="@+id/txtCodAula"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtSemestre"
+        app:layout_constraintEnd_toEndOf="@+id/txtSemestre"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtSemestre"
         app:layout_constraintTop_toBottomOf="@+id/txtCodAula">
 
         <AutoCompleteTextView
             android:id="@+id/cboCarreras"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/hintCarrera"
+            android:inputType="none"/>
 
-            android:hint="Carrera"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtMateria"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="354dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSemestre">
+
+        <AutoCompleteTextView
+            android:id="@+id/cboMaterias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hintMateria"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,40 +128,32 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="354dp"
         android:layout_height="58dp"
-        app:layout_constraintEnd_toEndOf="@+id/txtCarrera"
-        app:layout_constraintStart_toStartOf="@+id/txtCarrera"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtMateria"
+        app:layout_constraintEnd_toEndOf="@+id/txtMateria"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtMateria"
         app:layout_constraintTop_toBottomOf="@+id/txtCarrera">
 
         <AutoCompleteTextView
             android:id="@+id/cboSemestres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Semestre"
+            android:hint="@string/hintSemestre"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtMateria"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-        android:layout_width="354dp"
-        android:layout_height="58dp"
-        app:layout_constraintEnd_toEndOf="@+id/txtSemestre"
-        app:layout_constraintStart_toStartOf="@+id/txtSemestre"
-        app:layout_constraintTop_toBottomOf="@+id/txtSemestre">
-
-        <AutoCompleteTextView
-            android:id="@+id/cboMaterias"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Materia"
-            android:inputType="none" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group2"
+    <Button
+        android:id="@+id/btnCrearClase"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="txtMateria,txtCarrera,btnCrearClase,txtSemestre,txtCodMaestro,txtCodAula" />
+        android:layout_height="48dp"
+        android:layout_marginBottom="36dp"
+        android:text="Crear Clase"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
