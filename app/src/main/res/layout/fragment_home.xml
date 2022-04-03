@@ -7,7 +7,7 @@
     tools:context=".ui.home.HomeFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtCodMaestro"
+        android:id="@+id/CodMaestro"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="298dp"
         android:layout_height="60dp"
@@ -17,15 +17,16 @@
         android:layout_marginBottom="16dp"
         app:endIconCheckable="true"
         app:endIconMode="clear_text"
-        app:layout_constraintBottom_toTopOf="@+id/txtCodAula"
+        app:layout_constraintBottom_toTopOf="@+id/CodAula"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtCodMaestro"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="@string/hintCodMaestro"
-            android:inputType="text"/>
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -43,7 +44,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnQR2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/txtCodMaestro"
+        app:layout_constraintStart_toEndOf="@+id/CodMaestro"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -59,11 +60,11 @@
         android:paddingTop="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/txtCodAula"
+        app:layout_constraintStart_toEndOf="@+id/CodAula"
         app:layout_constraintTop_toBottomOf="@+id/btnQR1" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtCodAula"
+        android:id="@+id/CodAula"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="298dp"
         android:layout_height="60dp"
@@ -72,9 +73,10 @@
         android:layout_marginTop="16dp"
         app:endIconMode="clear_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCodMaestro">
+        app:layout_constraintTop_toBottomOf="@+id/CodMaestro">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtCodAula"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="@string/hintCodAula"
@@ -93,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="@+id/txtSemestre"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txtSemestre"
-        app:layout_constraintTop_toBottomOf="@+id/txtCodAula">
+        app:layout_constraintTop_toBottomOf="@+id/CodAula">
 
         <AutoCompleteTextView
             android:id="@+id/cboCarreras"

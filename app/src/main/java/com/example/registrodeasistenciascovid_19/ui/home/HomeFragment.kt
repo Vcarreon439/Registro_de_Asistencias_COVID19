@@ -11,11 +11,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.registrodeasistenciascovid_19.*
 import com.example.registrodeasistenciascovid_19.ViewModels.CarreraViewModel
+import com.example.registrodeasistenciascovid_19.ViewModels.ClasesViewModel
 import com.example.registrodeasistenciascovid_19.ViewModels.MateriaViewModel
 import com.example.registrodeasistenciascovid_19.databinding.FragmentHomeBinding
 import com.example.registrodeasistenciascovid_19.entities.Carrera
+import com.example.registrodeasistenciascovid_19.entities.Clases
 import com.example.registrodeasistenciascovid_19.entities.Materia
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.nav_header_main.view.*
+import kotlin.random.Random
 
 class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
 
@@ -25,6 +30,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
     //ViewModels
     private lateinit var mCarreraViewModel: CarreraViewModel
     private lateinit var mMateriaViewModel: MateriaViewModel
+    private lateinit var mClasesViewModel: ClasesViewModel
 
     //localData
     private lateinit var localCarrera: Carrera
@@ -40,6 +46,9 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         savedInstanceState: Bundle?
     ): View? {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        mCarreraViewModel = ViewModelProvider(this)[CarreraViewModel::class.java]
+        mMateriaViewModel = ViewModelProvider(this)[MateriaViewModel::class.java]
+        mClasesViewModel = ViewModelProvider(this)[ClasesViewModel::class.java]
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -53,8 +62,11 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
             Toast.makeText(context, getString(R.string.nodisp), Toast.LENGTH_SHORT).show()
         }
 
-        mCarreraViewModel = ViewModelProvider(this)[CarreraViewModel::class.java]
-        mMateriaViewModel = ViewModelProvider(this).get(MateriaViewModel::class.java)
+        _binding!!.btnCrearClase.setOnClickListener {
+            mClasesViewModel.AgregarClase(GenerarClase());
+        }
+
+
 
         if (IsEmpty(mCarreraViewModel))
             Toast.makeText(context, "aaaa", Toast.LENGTH_LONG).show()
@@ -64,6 +76,10 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         return root
     }
 
+    private fun GenerarClase(): Clases {
+        return Clases(Random.nextInt(0,100).toString(),txtCodMaestro.text.toString(),txtCodAula.text.toString(),"12:00",1)
+    }
+
     private fun GetCarrera(position: Int): Carrera?{
         var temp: Carrera? = null
         mCarreraViewModel.leerTodo.observe(viewLifecycleOwner, Observer { carrera -> temp = carrera[position] })
@@ -71,6 +87,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
     }
 
     private fun IsEmpty(viewModel: CarreraViewModel): Boolean {
+
 
         var flag: Boolean = false
         viewModel.leerTodo.observe(viewLifecycleOwner) { carrera ->
