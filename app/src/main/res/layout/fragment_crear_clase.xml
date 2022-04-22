@@ -51,10 +51,10 @@
         android:id="@+id/btnQR2"
         android:layout_width="48dp"
         android:layout_height="60dp"
-        android:contentDescription="@string/descBtnCodAul"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="28dp"
+        android:contentDescription="@string/descBtnCodAul"
         android:drawableTop="@drawable/qr_code_scanner_24"
         android:drawableTint="@color/design_default_color_background"
         android:paddingTop="11dp"
@@ -70,7 +70,7 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginStart="27dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         app:endIconMode="clear_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CodMaestro">
@@ -89,7 +89,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="354dp"
         android:layout_height="58dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/txtSemestre"
         app:layout_constraintEnd_toEndOf="@+id/txtSemestre"
@@ -102,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hintCarrera"
-            android:inputType="none"/>
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,6 +124,26 @@
             android:hint="@string/hintMateria"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtHora"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="140dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMateria">
+
+        <AutoCompleteTextView
+            android:id="@+id/cboDuracion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hintDuracion"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtSemestre"

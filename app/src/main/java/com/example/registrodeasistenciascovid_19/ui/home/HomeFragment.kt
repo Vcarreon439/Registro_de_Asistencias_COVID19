@@ -13,19 +13,17 @@ import com.example.registrodeasistenciascovid_19.*
 import com.example.registrodeasistenciascovid_19.ViewModels.CarreraViewModel
 import com.example.registrodeasistenciascovid_19.ViewModels.ClasesViewModel
 import com.example.registrodeasistenciascovid_19.ViewModels.MateriaViewModel
-import com.example.registrodeasistenciascovid_19.databinding.FragmentHomeBinding
+import com.example.registrodeasistenciascovid_19.databinding.FragmentCrearClaseBinding
 import com.example.registrodeasistenciascovid_19.entities.Carrera
 import com.example.registrodeasistenciascovid_19.entities.Clases
 import com.example.registrodeasistenciascovid_19.entities.Materia
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.nav_header_main.view.*
+import kotlinx.android.synthetic.main.fragment_crear_clase.*
 import kotlin.random.Random
 
 class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
 
     private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentCrearClaseBinding? = null
 
     //ViewModels
     private lateinit var mCarreraViewModel: CarreraViewModel
@@ -50,7 +48,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         mMateriaViewModel = ViewModelProvider(this)[MateriaViewModel::class.java]
         mClasesViewModel = ViewModelProvider(this)[ClasesViewModel::class.java]
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentCrearClaseBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 
@@ -63,10 +61,10 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         }
 
         _binding!!.btnCrearClase.setOnClickListener {
-            mClasesViewModel.AgregarClase(GenerarClase());
+            mClasesViewModel.AgregarClase(GenerarClase())
         }
 
-
+        CargarDuraciones()
 
         if (IsEmpty(mCarreraViewModel))
             Toast.makeText(context, "aaaa", Toast.LENGTH_LONG).show()
@@ -132,14 +130,22 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         }
         
         binding.cboSemestres.setOnItemClickListener { adapterView, view, position, l ->
+            binding.cboMaterias.setText("")
             CargarMaterias(localCarrera, position+1)
         }
         
     }
 
+    private fun CargarDuraciones(){
+        with(binding.cboDuracion){
+            setAdapter(homeViewModel.adapterDuracion(context))
+        }
+    }
+
     private fun CargarMaterias(carrera: Carrera, numSemestre: Int){
         mMateriaViewModel.materiasSemestre(carrera.idCarrera, numSemestre).observe(viewLifecycleOwner, Observer { materias ->
             localMaterias = materias
+
             var arr = mutableListOf<String>()
 
             for (materia in materias )
@@ -153,6 +159,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         localCarrera = GetCarrera(position)!!
+        binding.cboSemestres.setText("")
         CargarSemestres(position)
     }
 }

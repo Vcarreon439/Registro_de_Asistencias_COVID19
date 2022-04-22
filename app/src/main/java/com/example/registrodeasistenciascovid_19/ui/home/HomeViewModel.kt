@@ -23,8 +23,12 @@ class HomeViewModel : ViewModel(), ViewModelStoreOwner {
         return context?.let { ArrayAdapter(it, R.layout.list_item, arr) }
     }
 
-
-    //
+    fun adapterDuracion(context: Context): ArrayAdapter<String>{
+        var arr = mutableListOf<String>()
+        arr.add("1")
+        arr.add("2")
+        return context?.let { ArrayAdapter(it, R.layout.list_item, arr) }
+    }
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"

@@ -18,6 +18,7 @@
     <string name="hintCarrera">Carrera</string>
     <string name="hintSemestre">Semestre</string>
     <string name="hintMateria">Materia</string>
+    <string name="hintDuracion">Duración</string>
 
     <string name="descBtnCodDoc">Aqui se ingresa el codigo perteneciente al docente</string>
     <string name="descBtnCodAul">Aqui se ingresa el codigo perteneciente al aula</string>
