@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.registrodeasistenciascovid_19.*
+import com.example.registrodeasistenciascovid_19.ClasesExternas.TimePickerFragment
 import com.example.registrodeasistenciascovid_19.ViewModels.CarreraViewModel
 import com.example.registrodeasistenciascovid_19.ViewModels.ClasesViewModel
 import com.example.registrodeasistenciascovid_19.ViewModels.MateriaViewModel
@@ -51,18 +52,11 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         _binding = FragmentCrearClaseBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
-        _binding!!.btnQR1.setOnClickListener {
-            Toast.makeText(context, getString(R.string.nodisp), Toast.LENGTH_SHORT).show()
-        }
-
-        _binding!!.btnQR2.setOnClickListener {
-            Toast.makeText(context, getString(R.string.nodisp), Toast.LENGTH_SHORT).show()
-        }
-
-        _binding!!.btnCrearClase.setOnClickListener {
-            mClasesViewModel.AgregarClase(GenerarClase())
-        }
+        //Set Click Listeners
+        _binding!!.txtInicio.setOnClickListener{ showTimePickerDialog() }
+        _binding!!.btnQR1.setOnClickListener { Toast.makeText(context, getString(R.string.nodisp), Toast.LENGTH_SHORT).show() }
+        _binding!!.btnQR2.setOnClickListener { Toast.makeText(context, getString(R.string.nodisp), Toast.LENGTH_SHORT).show() }
+        _binding!!.btnCrearClase.setOnClickListener { mClasesViewModel.AgregarClase(GenerarClase()) }
 
         CargarDuraciones()
 
@@ -72,6 +66,15 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
             CargarCarreras()
 
         return root
+    }
+
+    private fun showTimePickerDialog() {
+        val timePicker = TimePickerFragment{ onTimeSelected(it) }
+        fragmentManager?.let { timePicker.show(it, "time") }
+    }
+
+    private fun onTimeSelected(Time: String){
+        txtInicio.setText("$Time")
     }
 
     private fun GenerarClase(): Clases {
@@ -85,13 +88,8 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
     }
 
     private fun IsEmpty(viewModel: CarreraViewModel): Boolean {
-
-
         var flag: Boolean = false
-        viewModel.leerTodo.observe(viewLifecycleOwner) { carrera ->
-            flag = carrera.isNotEmpty()
-        }
-
+        viewModel.leerTodo.observe(viewLifecycleOwner) { carrera -> flag = carrera.isNotEmpty() }
         return flag
     }
 
