@@ -3,6 +3,7 @@ package com.example.registrodeasistenciascovid_19.ClasesExternas
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.location.GnssAntennaInfo
 import android.os.Bundle
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
@@ -18,6 +19,19 @@ class TimePickerFragment(val listener: (String)-> Unit):DialogFragment(), TimePi
     }
 
     override fun onTimeSet(view: TimePicker?, Hora: Int, Minuto: Int) {
-        listener("$Hora:$Minuto")
+
+        var min: String = "${Minuto}"
+        var hora: String = "${Hora}"
+
+        if(Minuto<=9){
+            min = "0${Minuto}"
+        }
+
+        if (Hora<=9){
+            hora = "0${Hora}"
+        }
+
+        listener("$hora:$min")
+
     }
 }

@@ -1,5 +1,7 @@
 package com.example.registrodeasistenciascovid_19.ui.home
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.*
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.registrodeasistenciascovid_19.*
@@ -18,7 +21,9 @@ import com.example.registrodeasistenciascovid_19.databinding.FragmentCrearClaseB
 import com.example.registrodeasistenciascovid_19.entities.Carrera
 import com.example.registrodeasistenciascovid_19.entities.Clases
 import com.example.registrodeasistenciascovid_19.entities.Materia
+import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.fragment_crear_clase.*
+import java.util.*
 import kotlin.random.Random
 
 class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
@@ -39,6 +44,9 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var txtCodeAula: TextView
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,9 +62,19 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
 
         //Set Click Listeners
         _binding!!.txtInicio.setOnClickListener{ showTimePickerDialog() }
-        _binding!!.btnQR1.setOnClickListener { Toast.makeText(context, getString(R.string.nodisp), Toast.LENGTH_SHORT).show() }
-        _binding!!.btnQR2.setOnClickListener { Toast.makeText(context, getString(R.string.nodisp), Toast.LENGTH_SHORT).show() }
+
+        _binding!!.btnQR1.setOnClickListener {
+            val scanner = IntentIntegrator(this.activity).initiateScan()
+        }
+
+        _binding!!.btnQR2.setOnClickListener {
+            var scanner = IntentIntegrator(this.activity).initiateScan()
+        }
+
         _binding!!.btnCrearClase.setOnClickListener { mClasesViewModel.AgregarClase(GenerarClase()) }
+
+        _binding!!.txtInicio.setText("${Calendar.HOUR_OF_DAY}:${Calendar.MINUTE}")
+
 
         CargarDuraciones()
 
@@ -67,6 +85,8 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
 
         return root
     }
+
+
 
     private fun showTimePickerDialog() {
         val timePicker = TimePickerFragment{ onTimeSelected(it) }
