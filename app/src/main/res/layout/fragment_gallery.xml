@@ -6,17 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".ui.gallery.GalleryFragment">
 
-    <TextView
-        android:id="@+id/text_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <Button
+        android:id="@+id/btnQR1"
+        android:layout_width="48dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="29dp"
+        android:contentDescription="@string/descBtnCodDoc"
+        android:drawableTop="@drawable/qr_code_scanner_24"
+        android:drawableTint="@color/design_default_color_background"
+        android:paddingTop="11dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/CodAulaEst"
+        app:layout_constraintTop_toTopOf="@+id/CodAulaEst" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Matricula"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="356dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        app:endIconCheckable="true"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="@+id/btnQR1"
+        app:layout_constraintStart_toStartOf="@+id/CodAulaEst"
+        app:layout_constraintTop_toBottomOf="@+id/CodAulaEst">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtMatricula"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Matricula del Estudiante"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/CodAulaEst"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="298dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="49dp"
+        app:endIconCheckable="true"
+        app:endIconMode="clear_text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtCodAulaEst"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/hintCodAula"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

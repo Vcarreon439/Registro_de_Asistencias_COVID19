@@ -196,6 +196,7 @@
         android:layout_height="48dp"
         android:layout_marginBottom="36dp"
         android:text="Crear Clase"
+        app:iconTint="@color/design_default_color_on_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

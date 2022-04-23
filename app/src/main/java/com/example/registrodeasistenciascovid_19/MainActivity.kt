@@ -1,7 +1,11 @@
 package com.example.registrodeasistenciascovid_19
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.*
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -11,7 +15,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import com.example.registrodeasistenciascovid_19.databinding.ActivityMainBinding
+import com.example.registrodeasistenciascovid_19.ui.home.HomeFragment
+import com.google.zxing.integration.android.IntentIntegrator
+import kotlinx.android.synthetic.main.fragment_crear_clase.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        //
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -54,5 +61,21 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        var scannResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data)
+        if (scannResult!=null){
+            if(scannResult.contents==null){
+                Toast.makeText(this, "No se pudo escanear", Toast.LENGTH_LONG).show()
+            }
+            else{
+                txtCodAula.setText("${scannResult.contents}")
+                Toast.makeText(this, "Todo bien", Toast.LENGTH_LONG).show()
+            }
+        }
+        else{
+            super.onActivityResult(requestCode, resultCode, data)
+        }
     }
 }
