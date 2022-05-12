@@ -15,6 +15,7 @@
         <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.345" />
         <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/drawable/qr_code_scanner_24.xml" value="0.345" />
         <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/drawable/side_nav_bar.xml" value="0.228" />
+        <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/drawable/state_dot.xml" value="0.3635" />
         <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/drawable/table.xml" value="0.345" />
         <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/layout/app_bar_main.xml" value="0.3625" />
@@ -23,8 +24,11 @@
         <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/layout/fragment_gallery.xml" value="0.3625" />
         <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/layout/fragment_home.xml" value="0.5" />
         <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/layout/fragment_slideshow.xml" value="0.3625" />
-        <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/layout/list_item.xml" value="0.3625" />
+        <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/layout/list_item.xml" value="0.33" />
         <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/layout/nav_header_main.xml" value="0.44525547445255476" />
+        <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/layout/recycler_item.xml" value="0.33" />
+        <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/menu/activity_main_drawer.xml" value="0.3625" />
+        <entry key="..\:/Users/hv_ca/StudioProjects/Registro_de_Asistencias_COVID19/app/src/main/res/menu/main.xml" value="0.3625" />
       </map>
     </option>
   </component>
