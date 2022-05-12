@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.contract.ActivityResultContracts.*
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -15,9 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import com.example.registrodeasistenciascovid_19.databinding.ActivityMainBinding
-import com.example.registrodeasistenciascovid_19.ui.home.HomeFragment
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.fragment_crear_clase.*
 
@@ -45,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_clase, R.id.nav_asistencia, R.id.nav_slideshow
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
