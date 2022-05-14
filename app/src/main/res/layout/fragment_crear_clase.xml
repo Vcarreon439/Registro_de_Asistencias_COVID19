@@ -132,7 +132,7 @@
         android:id="@+id/txtHora"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="140dp"
-        android:layout_height="58dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.89"
@@ -151,7 +151,7 @@
         android:id="@+id/SelHora"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="205dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="28dp"
         android:layout_marginTop="12dp"
@@ -162,7 +162,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtInicio"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:hint="Hora de Inicio"
             android:clickable="false"
             android:editable="false" />
