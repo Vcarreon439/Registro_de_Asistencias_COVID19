@@ -13,7 +13,7 @@ import com.example.registrodeasistenciascovid_19.Dao.SemestreDao
 import com.example.registrodeasistenciascovid_19.entities.*
 import java.net.InetSocketAddress
 
-@Database(entities = [Carrera::class, Semestre::class, Materia::class, Clases::class], version = 5, exportSchema = true)
+@Database(entities = [Carrera::class, Semestre::class, Materia::class, Clases::class, materiasCarrera::class], version = 5, exportSchema = true)
 abstract class LocalDatabase: RoomDatabase() {
 
     abstract fun clasesDao(): ClasesDao

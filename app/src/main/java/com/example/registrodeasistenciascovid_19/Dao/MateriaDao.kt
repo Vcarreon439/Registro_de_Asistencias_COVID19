@@ -14,7 +14,7 @@ interface MateriaDao {
     @Query("Select * from materias")
     fun leerTodas(): LiveData<List<Materia>>
 
-    @Query("Select * from materias where id_carrera = :idCarrera and semetre = :numSemestre")
+    @Query("Select * from materiasCarrera A Inner Join materias B where A.codCarrera = :idCarrera and B.semetre = :numSemestre")
     fun materiasSemestre(idCarrera: String, numSemestre: Int): LiveData<List<Materia>>
 
 }
