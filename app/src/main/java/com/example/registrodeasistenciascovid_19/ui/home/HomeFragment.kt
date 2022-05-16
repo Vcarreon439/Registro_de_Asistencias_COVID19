@@ -47,7 +47,10 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
 
     //localData
     private lateinit var localCarrera: Carrera
+    private lateinit var localMateria: Materia
     private lateinit var localMaterias: List<Materia>
+
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -80,7 +83,18 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         _binding!!.txtInicio.setOnClickListener{ showTimePickerDialog() }
         _binding!!.btnQR1.setOnClickListener { iniciarScanner() }
         _binding!!.btnQR2.setOnClickListener { iniciarScanner() }
-        _binding!!.btnCrearClase.setOnClickListener { mClasesViewModel.AgregarClase(GenerarClase()) }
+
+        _binding!!.btnCrearClase.setOnClickListener {
+            val clase = GenerarClase()
+            if (clase!=null) {
+                mClasesViewModel.AgregarClase(clase)
+                Toast.makeText(context, "Se registro la clase", Toast.LENGTH_LONG).show()
+            }
+            else{
+                Toast.makeText(context, "No se registro la clase, verifique los datos", Toast.LENGTH_LONG).show()
+            }
+        }
+
         _binding!!.txtInicio.setText("${LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm"))}")
 
         CargarDuraciones()
@@ -106,8 +120,61 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         txtInicio.setText("$Time")
     }
 
-    private fun GenerarClase(): Clases {
-        return Clases(Random.nextInt(0,100).toString(),txtCodMaestro.text.toString(),txtCodAula.text.toString(),"12:00",1)
+    private fun GenerarClase(): Clases? {
+
+        if(VerficarEntradas()) {
+            return Clases(
+                Random.nextInt(0,100).toString(),
+                localMateria.CodMateria,
+                txtCodMaestro.text.toString(),
+                txtCodAula.text.toString(),
+                txtInicio.text.toString(),
+                cboDuracion.text.toString().toInt(),
+            )
+        }
+        else{
+            return null
+        }
+    }
+
+    private fun VerficarEntradas(): Boolean {
+        if (txtCodAula.text.toString()=="") {
+            Toast.makeText(context, "Porfavor ingrese el codigo del aula", Toast.LENGTH_LONG).show()
+            return false
+        }
+
+        if (txtCodMaestro.text.toString()=="") {
+            Toast.makeText(context, "Porfavor ingrese el codigo del docente", Toast.LENGTH_LONG).show()
+            return false
+        }
+
+        if (cboCarreras.text.toString()=="") {
+            Toast.makeText(context, "Porfavor seleccione una carrera", Toast.LENGTH_LONG).show()
+            return false
+        }
+
+        if (cboSemestres.text.toString()=="") {
+            Toast.makeText(context, "Porfavor seleccione un semestre", Toast.LENGTH_LONG).show()
+            return false
+        }
+
+        if (cboMaterias.text.toString()=="") {
+            Toast.makeText(context, "Porfavor seleccione una materia", Toast.LENGTH_LONG).show()
+            return false
+        }
+
+        if (cboDuracion.text.toString()=="") {
+            Toast.makeText(context, "Porfavor ingrese la duracion", Toast.LENGTH_LONG).show()
+            return false
+        }
+
+        if (txtInicio.text.toString()=="") {
+            Toast.makeText(context, "Porfavor seleccione una hora de inicio", Toast.LENGTH_LONG).show()
+            return false
+        }
+
+
+        return true
     }
 
     private fun GetCarrera(position: Int): Carrera?{
@@ -180,6 +247,11 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
 
             val adapter = context?.let { ArrayAdapter(it, R.layout.list_item, arr) }
             binding.cboMaterias.setAdapter(adapter)
+
+            binding.cboMaterias.setOnItemClickListener { adapterView, view, position, l ->
+                localMateria = localMaterias[position]
+            }
+
         })
     }
     //endregion

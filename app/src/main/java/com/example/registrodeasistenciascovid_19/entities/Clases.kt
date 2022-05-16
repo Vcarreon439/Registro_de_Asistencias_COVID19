@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class Clases(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "Cod_Clase") var Cod_Clase: String,
+    @ColumnInfo(name = "codMateria") var Cod_Materia: String,
     @ColumnInfo(name = "codDocente") var codDocente: String,
     @ColumnInfo(name = "codAula") var codAula: String,
     @ColumnInfo(name = "Inicio") var inicio: String,

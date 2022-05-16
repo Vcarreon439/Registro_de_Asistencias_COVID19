@@ -7,7 +7,6 @@ import com.example.registrodeasistenciascovid_19.entities.Clases
 
 @Dao
 interface ClasesDao {
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun AgregarClase(clases: Clases)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun AgregarClase(clases: Clases)
 }
