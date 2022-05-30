@@ -1,11 +1,10 @@
-package com.example.registrodeasistenciascovid_19.list
+package com.example.registrodeasistenciascovid_19.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.registrodeasistenciascovid_19.R
-import com.example.registrodeasistenciascovid_19.entities.Carrera
 import com.example.registrodeasistenciascovid_19.entities.Materia
 import kotlinx.android.synthetic.main.list_item.view.*
 

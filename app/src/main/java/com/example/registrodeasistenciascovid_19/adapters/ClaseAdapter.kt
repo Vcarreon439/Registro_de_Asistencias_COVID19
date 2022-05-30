@@ -9,8 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.registrodeasistenciascovid_19.R
 import com.example.registrodeasistenciascovid_19.entities.Clases
+import com.example.registrodeasistenciascovid_19.ui.listaClases.listaClasesFragment
 
-class ClaseAdapter(private val context: Context, private  val listener: IClasesRVAdapter):
+class ClaseAdapter(private val context: listaClasesFragment, private val listener: IClasesRVAdapter):
     RecyclerView.Adapter<ClaseAdapter.ClaseViewHolder>() {
 
     private val clasesInternas = ArrayList<Clases>()
@@ -26,7 +27,7 @@ class ClaseAdapter(private val context: Context, private  val listener: IClasesR
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClaseViewHolder {
-        val viewHolder = ClaseViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_item, parent, false))
+        val viewHolder = ClaseViewHolder(LayoutInflater.from(context.context).inflate(R.layout.recycler_item, parent, false))
         viewHolder.delete.setOnClickListener{
             listener.onItemClicked(clasesInternas[viewHolder.adapterPosition])
         }

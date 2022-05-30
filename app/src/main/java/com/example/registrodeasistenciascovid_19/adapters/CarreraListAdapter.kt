@@ -1,4 +1,4 @@
-package com.example.registrodeasistenciascovid_19.list
+package com.example.registrodeasistenciascovid_19.adapters
 
 import android.view.LayoutInflater
 import android.view.View

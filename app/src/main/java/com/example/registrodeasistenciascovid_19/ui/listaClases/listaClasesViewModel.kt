@@ -15,7 +15,15 @@ import com.example.registrodeasistenciascovid_19.repositories.ClasesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class listaClasesViewModel(): ViewModel() {
-    lateinit var listaClases: LiveData<List<Clases>>
-    lateinit var mClasesViewModel: ClasesViewModel
+class listaClasesViewModel(application: Application): AndroidViewModel(application) {
+
+    private val repository: ClasesRepository
+    var listaClases: LiveData<List<Clases>>
+
+    init {
+        val dao = LocalDatabase.getDatabase(application).clasesDao()
+        repository = ClasesRepository(dao)
+        listaClases = repository.clasesInternas
+    }
+
 }
