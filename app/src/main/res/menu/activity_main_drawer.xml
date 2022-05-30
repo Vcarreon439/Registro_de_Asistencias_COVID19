@@ -16,5 +16,11 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/table"
             android:title="@string/menu_verificar" />
+
+        <item
+            android:id="@+id/nav_listaClases"
+            android:icon="@drawable/table"
+            android:title="Verificar clases" />
+
     </group>
 </menu>

@@ -1,20 +1,17 @@
-package com.example.registrodeasistenciascovid_19.ui.gallery
+package com.example.registrodeasistenciascovid_19.ui.registrarAsistencia
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.registrodeasistenciascovid_19.R
-import com.example.registrodeasistenciascovid_19.databinding.FragmentGalleryBinding
+import com.example.registrodeasistenciascovid_19.databinding.FragmentRegistrarClaseBinding
 
-class GalleryFragment : Fragment() {
+class registrarAsistenciaFragment : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
-    private var _binding: FragmentGalleryBinding? = null
+    private lateinit var galleryViewModel: registrarAsistenciaViewModel
+    private var _binding: FragmentRegistrarClaseBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -26,9 +23,9 @@ class GalleryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         galleryViewModel =
-            ViewModelProvider(this).get(GalleryViewModel::class.java)
+            ViewModelProvider(this).get(registrarAsistenciaViewModel::class.java)
 
-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
+        _binding = FragmentRegistrarClaseBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         /*val textView: TextView = binding.textGallery
