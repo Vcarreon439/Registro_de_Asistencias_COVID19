@@ -71,7 +71,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         mCarreraViewModel = ViewModelProvider(this)[CarreraViewModel::class.java]
         mMateriaViewModel = ViewModelProvider(this)[MateriaViewModel::class.java]
         mClasesViewModel = ViewModelProvider(this)[ClasesViewModel::class.java]

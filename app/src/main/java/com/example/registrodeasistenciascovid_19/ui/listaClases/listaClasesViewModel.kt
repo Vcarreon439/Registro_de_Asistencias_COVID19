@@ -1,10 +1,21 @@
 package com.example.registrodeasistenciascovid_19.ui.listaClases
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import android.content.Context
+import android.widget.ArrayAdapter
+import androidx.lifecycle.*
+import androidx.room.Database
+import com.example.registrodeasistenciascovid_19.R
+import com.example.registrodeasistenciascovid_19.ViewModels.CarreraViewModel
+import com.example.registrodeasistenciascovid_19.ViewModels.ClasesViewModel
+import com.example.registrodeasistenciascovid_19.database.LocalDatabase
+import com.example.registrodeasistenciascovid_19.entities.Carrera
+import com.example.registrodeasistenciascovid_19.entities.Clases
+import com.example.registrodeasistenciascovid_19.repositories.ClasesRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class listaClasesViewModel: ViewModel() {
-
-
+class listaClasesViewModel(): ViewModel() {
+    lateinit var listaClases: LiveData<List<Clases>>
+    lateinit var mClasesViewModel: ClasesViewModel
 }
