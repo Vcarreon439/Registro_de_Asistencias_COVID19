@@ -17,13 +17,13 @@ import kotlinx.coroutines.launch
 
 class ClasesViewModel(aplication: Application) :AndroidViewModel(aplication) {
 
-    //val leerTodo: LiveData<List<Clases>>
+    val leerTodo: LiveData<List<Clases>>
     private val repository: ClasesRepository
 
     init {
         val claseDao = LocalDatabase.getDatabase(aplication).clasesDao()
         repository = ClasesRepository(claseDao)
-        //leerTodo = repository.readAll
+        leerTodo = repository.clasesInternas
     }
 
     fun AgregarClase(clase: Clases){

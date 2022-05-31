@@ -19,6 +19,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.registrodeasistenciascovid_19.*
+import com.example.registrodeasistenciascovid_19.ClasesExternas.ClaseAdapter
 import com.example.registrodeasistenciascovid_19.ClasesExternas.TimePickerFragment
 import com.example.registrodeasistenciascovid_19.ViewModels.CarreraViewModel
 import com.example.registrodeasistenciascovid_19.ViewModels.ClasesViewModel
@@ -49,6 +50,8 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
     private lateinit var localCarrera: Carrera
     private lateinit var localMateria: Materia
     private lateinit var localMaterias: List<Materia>
+
+    private  lateinit var claseAdapter: ClaseAdapter
 
 
 
@@ -84,6 +87,8 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         _binding!!.btnQR1.setOnClickListener { iniciarScanner() }
         _binding!!.btnQR2.setOnClickListener { iniciarScanner() }
 
+        claseAdapter = ClaseAdapter { clase ->  adapterOnClick(clase)}
+
         _binding!!.btnCrearClase.setOnClickListener {
             val clase = GenerarClase()
             if (clase!=null) {
@@ -105,6 +110,10 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
             CargarCarreras()
 
         return root
+    }
+
+    private fun adapterOnClick(clase: Clases) {
+
     }
 
     private fun iniciarScanner() {
